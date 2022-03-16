@@ -97,7 +97,7 @@ static int ffplay(const char *filename, unsigned int sampling_rate, int fd)
 		/* Most commonly installed in /usr/local/bin */
 	    
 /* Was pipe:1 */
-	 execl(LOCAL_FFMPG, "ffmpeg", "-i", filename, "-ar", sampling_rate_str, "-ac", "1", "-acodec", "pcm_s16le", "-f", "s16le", "-bufsize", "64k", "pipe:1", (char *)NULL);
+	 execl(FFMPG, "ffmpeg", "-i", filename, "-ar", sampling_rate_str, "-vn", "-loglevel", "fatal", "-ac", "1", "-acodec", "pcm_s16le", "-f", "s16le", "-bufsize", "64k", "-af", "volume=0.6", "pipe:1", (char *)NULL);
 	/* Can't use ast_log since FD's are closed */
 	 ast_log(LOG_NOTICE,"Execute of ffmpeg failed\n");
 
